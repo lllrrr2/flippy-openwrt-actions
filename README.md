@@ -16,7 +16,7 @@ This Actions can be used by referencing it in the `.github/workflows/*.yml` clou
   env:
     OPENWRT_ARMVIRT: openwrt/bin/targets/*/*/*.tar.gz
     PACKAGE_SOC: all
-    KERNEL_VERSION_NAME: 6.1.1_5.15.1
+    KERNEL_VERSION_NAME: 6.1.y_6.6.y
     KERNEL_AUTO_LATEST: true
 ```
 
@@ -30,14 +30,16 @@ Based on the latest kernel packaging scripts released by `Flippy`, optional para
 | SCRIPT_REPO_URL        | unifreq/openwrt_packit | Set `<owner>/<repo>` of the packaging script source repository |
 | SCRIPT_REPO_BRANCH     | master                 | Set the branch of the packaging script source repository      |
 | KERNEL_REPO_URL        | breakings/OpenWrt      | Set `<owner>/<repo>` of the kernel download repository, it downloads from the [kernel Releases](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable) maintained by breakings by default. |
-| KERNEL_VERSION_NAME    | 6.1.1_5.15.1           | Set the [Kernel version](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable), you can check and select a specific one. You can specify a single kernel such as `6.1.1`, or select multiple kernels connected with `_` like `6.1.1_5.15.1` |
-| KERNEL_AUTO_LATEST     | true                   | Set whether to automatically adopt the latest version kernel of the same series. When set to `true`, it will automatically look for whether there is an updated version of the kernel specified in `KERNEL_VERSION_NAME`, such as `6.1.1`, in the kernel library, and if there is an updated version, it will automatically replace it with the latest version. When set to `false`, it will compile the specified version kernel. |
-| PACKAGE_SOC            | all                    | Set the `SOC` of the package box, the default is `all` to package all boxes, you can specify a single box like `s905x3`, or select multiple boxes connected with `_` like `s905x3_s905d`. The SoC codes for each box are: `vplus`, `cm3`, `jp-tvbox`, `beikeyun`, `l1pro`, `rock5b`, `r66s`, `r68s`, `e25`, `photonicat`, `watermelon-pi`, `zcube1-max`, `h28k`, `h66k`, `h68k`, `h69k`, `h69k-max`, `h88k`, `h88k-v3`, `s905`, `s905d`, `s905x2`, `s905x3`, `s912`, `s922x`, `s922x-n2`, `qemu`, `diy`. Note: `s922x-n2` is `s922x-odroid-n2`, `diy` is a custom box. |
+| KERNEL_VERSION_NAME    | 6.1.y_6.6.y            | Set the [Kernel version](https://github.com/breakings/OpenWrt/releases/tag/kernel_stable), you can check and select a specific one. You can specify a single kernel such as `6.1.y`, or select multiple kernels connected with `_` like `6.1.y_6.6.y` |
+| KERNEL_AUTO_LATEST     | true                   | Set whether to automatically adopt the latest version kernel of the same series. When set to `true`, it will automatically look for whether there is an updated version of the kernel specified in `KERNEL_VERSION_NAME`, such as `6.1.y`, in the kernel library, and if there is an updated version, it will automatically replace it with the latest version. When set to `false`, it will compile the specified version kernel. |
+| PACKAGE_SOC            | all                    | Set the `SOC` of the package box, the default is `all` to package all boxes, you can specify a single box like `s905x3`, or select multiple boxes connected with `_` like `s905x3_s905d`. The SoC codes for each box are: `vplus`, `cm3`, `jp-tvbox`, `beikeyun`, `l1pro`, `rock5b`, `rock5c`, `e52c`, `r66s`, `r68s`, `e25`, `photonicat`, `watermelon-pi`, `zcube1-max`, `ht2`, `e20c`, `h28k`, `h66k`, `h68k`, `h69k`, `h69k-max`, `h88k`, `h88k-v3`, `rk3399`, `s905`, `s905d`, `s905x2`, `s905x3`, `s912`, `s922x`, `s922x-n2`, `qemu`, `diy`. Note: `s922x-n2` is `s922x-odroid-n2`, `diy` is a custom box. |
 | GZIP_IMGS              | auto                   | Set the format of the file compression after packaging, optional values are `.gz` (default) / `.xz` / `.zip` / `.zst` / `.7z` |
 | SELECT_PACKITPATH      | openwrt_packit         | Set the name of the packaging directory under `/opt`          |
 | SELECT_OUTPUTPATH      | output                 | Set the name of the firmware output directory in the `${SELECT_PACKITPATH}` directory |
 | SCRIPT_VPLUS           | mk_h6_vplus.sh         | Set the script filename for packaging `h6 vplus`              |
 | SCRIPT_CM3             | mk_rk3566_radxa-cm3-rpi-cm4-io.sh | Set the script filename for packaging `rk3566 radxa-cm3-rpi-cm4-io` |
+| SCRIPT_HT2             | mk_rk3528_ht2.sh       | Set the script filename for packaging `rk3528 ht2`           |
+| SCRIPT_E20C            | mk_rk3528_e20c.sh      | Set the script filename for packaging `rk3528 e20c`           |
 | SCRIPT_H28K            | mk_rk3528_h28k.sh      | Set the script filename for packaging `rk3528 h28k`           |
 | SCRIPT_H66K            | mk_rk3568_h66k.sh      | Set the script filename for packaging `rk3568 h66k`           |
 | SCRIPT_H68K            | mk_rk3568_h68k.sh      | Set the script filename for packaging `rk3568 h68k`           |
@@ -49,6 +51,8 @@ Based on the latest kernel packaging scripts released by `Flippy`, optional para
 | SCRIPT_L1PRO           | mk_rk3328_l1pro.sh     | Set the script filename for packaging `rk3328 l1pro`          |
 | SCRIPT_ZCUBE1MAX       | mk_rk3399_zcube1-max.sh | Set the script filename for packaging `rk3399 zcube1-max`    |
 | SCRIPT_ROCK5B          | mk_rk3588_rock5b.sh    | Set the script filename for packaging `rk3588 rock5b`         |
+| SCRIPT_ROCK5C          | mk_rk3588s_rock5c.sh   | Set the script filename for packaging `rk3588s rock5c`        |
+| SCRIPT_E52C            | mk_rk3588s_e52c.sh     | Set the script filename for packaging `rk3588s e52c`          |
 | SCRIPT_R66S            | mk_rk3568_r66s.sh      | Set the script filename for packaging `rk3568 r66s`           |
 | SCRIPT_R68S            | mk_rk3568_r68s.sh      | Set the script filename for packaging `rk3568 r68s`           |
 | SCRIPT_E25             | mk_rk3568_e25.sh       | Set the script filename for packaging `rk3568 e25`            |
@@ -64,6 +68,7 @@ Based on the latest kernel packaging scripts released by `Flippy`, optional para
 | SCRIPT_QEMU            | mk_qemu-aarch64_img.sh | Set the script filename for packaging `qemu`                  |
 | SCRIPT_DIY             | mk_diy.sh              | Set the script filename for packaging `diy` custom            |
 | SCRIPT_DIY_PATH        | None                   | Set the source path for `SCRIPT_DIY`. It can be a URL like `https://weburl/mydiyfile` or a relative path in your repository like `script/mk_s905w.sh` |
+| CUSTOMIZE_RK3399       | None                   | Set custom rk3399 device list, format: `board1:dtb1/board2:dtb2` |
 | WHOAMI                 | flippy                 | Set the value for `WHOAMI` in `make.env`                      |
 | OPENWRT_VER            | auto                   | Set the value for `OPENWRT_VER` in `make.env`. By default, `auto` will inherit the value from the file. When set to other parameters, it will replace the original parameter with the custom parameter |
 | SW_FLOWOFFLOAD         | 1                      | Set the value for `SW_FLOWOFFLOAD` in `make.env`              |
@@ -78,7 +83,7 @@ Based on the latest kernel packaging scripts released by `Flippy`, optional para
 
 ## Output Parameters Explanation
 
-According to the standard of github.com, 3 environment variables have been output for use in subsequent compilation steps. Since github.com recently changed the settings of fork repositories, read-write permissions for Workflow are turned off by default. Therefore, `${{ secrets.GITHUB_TOKEN }}` and `${{ secrets.GH_TOKEN }}` need to be added to the repository and the `Workflow read-write permissions` need to be set to upload to `Releases`. For details, see [User Manual](https://github.com/ophub/amlogic-s9xxx-openwrt/blob/main/documents/README.md#2-set-privacy-variable-github_token).
+According to the standard of github.com, 3 environment variables have been output for use in subsequent compilation steps. Since github.com recently changed the settings of fork repositories, read-write permissions for Workflow are turned off by default. Therefore, Therefore, to upload to Releases, it is necessary to `set Workflow read and write permissions`. For details, see [User Manual](https://github.com/ophub/amlogic-s9xxx-openwrt/tree/main/documents#3-fork-the-repository-and-set-workflow-permissions).
 
 | Parameter                      | Default Value              | Description                             |
 |--------------------------------|----------------------------|-----------------------------------------|
